@@ -1,6 +1,6 @@
 /*
 This assignment is to allocating computer's memory by merging, cutting and freeing.
-This is COMP1927 coursework.
+This is COMP1927 individual coursework.
 */
 void vlad_free(void *object)
 {
