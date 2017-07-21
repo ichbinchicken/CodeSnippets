@@ -1,3 +1,7 @@
+/*
+This assignment is to allocating computer's memory by merging, cutting and freeing.
+This is COMP1927 coursework.
+*/
 void vlad_free(void *object)
 {
    u_int32_t offset_index;
@@ -55,10 +59,9 @@ void vlad_free(void *object)
          curr0->prev = offset_index;
          before->next = offset_index;
          //curr0->next doesn't change
-      } else if (offset_index < free_list_ptr) {//if offset_index is before free_list_ptr
+      } else if (offset_index < free_list_ptr) { //if offset_index is before free_list_ptr
          while (last->prev != free_list_ptr) {
             last = (free_header_t *)&memory[last->next];
-//         printf("last->next is %d\n", last->next);
          }
          free0->prev = curr0->prev;
          free0->next = free_list_ptr;
