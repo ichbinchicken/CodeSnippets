@@ -1,5 +1,5 @@
 # This is a piece of code to match some syntax in Perl and translate into Python.
-# This is COMP2041 coursework.
+# This is COMP2041 individual coursework.
 
 my ($line) = @_;
     $line =~ s/;//g;
