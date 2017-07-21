@@ -3,7 +3,7 @@
 
 my ($line) = @_;
     $line =~ s/;//g;
-    # comments:
+    # change comments:
     if ($line =~ /^\#/ && $line !~ /#!\/usr\/bin\/perl -w/) {
         push(@outputs,$line);
     # calling different types of print functions:
