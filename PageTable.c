@@ -1,3 +1,5 @@
+// Virtual Memory Simulation
+// School assignment
 int requestPage(int pno, char mode, int time)
 {
    if (pno < 0 || pno >= nPages) {
