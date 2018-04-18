@@ -1,0 +1,71 @@
+The Death Of Stalin
+Booking 1 ROW1-ROW50
+Change 1 ROW1-ROW50
+Darkest Hour
+ROW: 1-50
+Booking rejected
+Booking 3 ROW51-ROW70
+Change 1 ROW1-ROW20
+Darkest Hour
+ROW: 1-20,51-70
+Change rejected
+Booking 4 WOR1-WOR10
+Booking 5 WOR1-WOR5
+Change 5 WOR1-WOR10
+Darkest Hour
+WOR: 1-10
+ROW: 1-20,51-70
+Change 1 ROW1-ROW20
+Darkest Hour
+WOR: 1-10
+ROW: 51-70
+The Death Of Stalin
+WOR: 1-10
+ROW: 1-20
+Booking 6 ROW1-ROW50
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70
+Change rejected
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70
+The Death Of Stalin
+WOR: 1-10
+ROW: 1-20
+Change rejected
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70
+Booking 7 A1-A100
+Change 7 ROW71
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70,71
+Booking 8 X1-X80
+Love, Simon
+X: 1-80
+Change rejected
+Change rejected
+Love, Simon
+X: 1-80
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70,71
+Change 8 ROW72-ROW75
+Darkest Hour
+WOR: 1-10
+ROW: 1-50,51-70,71,72-75
+Love, Simon
+Booking 9 A1-A100
+Booking 10 X1-X40
+Early Man - Advance Screenings
+X: 1-40
+A: 1-100
+Cancel 9
+Early Man - Advance Screenings
+X: 1-40
+Booking 11 A1-A110
+Early Man - Advance Screenings
+X: 1-40
+A: 1-110

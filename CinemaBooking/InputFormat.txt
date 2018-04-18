@@ -1,0 +1,12 @@
+Cinema <cinema> <row> <seats>
+        # specify that cinema <cinema> has a <row> row that has <seats> seats
+Session <cinema> <time> <movie>
+        # specify that there is a session showing <movie> in <cinema> at <time>
+Request <id> <cinema> <time> <tickets>
+        # booking request <id> is for <cinema> at <time> for <tickets> tickets
+Change <id> <cinema> <time> <tickets>
+        # change booking <id> to be for <cinema> at <time> for <tickets> tickets
+Cancel <id>
+        # cancel booking <id> (if it exists) and free up seats
+Print <cinema> <time>
+        # print record of all bookings for <cinema> at <time>

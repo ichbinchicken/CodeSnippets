@@ -1,0 +1,105 @@
+Cinema 1 Z 80  # Row Z of cinema 1 has 80 seats
+Cinema 1 Y 30  # Row Y of cinema 1 has 30 seats
+Cinema 2 U 25   # Row U of cinema 2 has 25 seats
+Cinema 2 C 45   # Row C of cinema 2 has 45 seats
+Session 1 09:00 Transformers    # Transformers is showing at the 10:00am session in cinema 1
+Session 1 12:00 Iron Man  # Iron Man is showing at 12:00pm session in cinema 1
+Session 1 15:00 Harry Potter and the Deathly Hallows – Part 1 # Harry Potter and the Deathly Hallows – Part 1 is showing at 3:00pm session in cinema 1
+Session 2 09:00 Harry Potter and the Deathly Hallows – Part 2
+Session 2 12:00 Harry Potter and the Philosopher's Stone # Harry Potter and the Philosopher's Stone is showing at 9:00am session in cinema 2
+
+# Test making booking request in one cinema in different cases:
+Request 1 1 09:00 50 # Request 1 is for 50 tickets for the 9:00am session in cinema 1
+                     # Assign seats 1-50 of row Z
+                     # Output Booking 1 Z1-Z50
+Print 1 09:00        # Print the bookings for the 9:00am session in cinema 1
+Print 1 12:00
+Print 1 15:00
+
+Request 2 1 12:00 50 # Request 2 is for 50 tickets for the 12:00pm session in cinema 1
+                     # Assign seats 1-50 of row Z
+                     # Output Booking 2 Z1-Z50
+Request 3 1 15:00 50 # Request 3 is for 50 tickets for the 3:00pm session in cinema 1
+                     # Assign seats 1-50 of row Z
+                     # Output Booking Z1-Z50
+Request 4 1 09:00 50 # Request 4 is for 50 tickets for the 9:00am session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Request 5 1 12:00 50 # Request 5 is for 50 tickets for the 12:00pm session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Request 6 1 15:00 50 # Request 6 is for 50 tickets for the 3:00pm session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Print 1 09:00        # Print the bookings for the 2:30pm session in cinema 1
+Print 1 12:00
+Print 1 15:00
+
+Request 7 1 09:00 29 # Request 7 is for 29 tickets for the 9:00am session in cinema 1
+                     # Assign seats 51-79 of row Z
+                     # Output Booking 1 Z51-Z79
+Request 8 1 09:00 31 # Request 8 is for 31 tickets for the 09:00am session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Request 9 1 09:00 1 # Request 9 is for 1 ticket for the 09:00am session in cinema 1
+                     # Assign seat 80 of row Z
+                     # Output Booking Z80
+Request 10 1 09:00 10 # Request 10 is for 10 tickets for the 9:00am session in cinema 1
+                     # Assign seats 1-10 of row Y
+                     # Output Booking 1 Y1-Y10
+Print 1 09:00
+Print 1 12:00
+Print 1 15:00
+
+Request 11 1 12:00 1 # Request 11 is for 1 ticket for the 12:00pm session in cinema 1
+                     # Assign seat 51 of row Z
+                     # Output Booking 11 Z51
+Request 12 1 15:00 11 # Request 12 is for 11 tickets for the 3:00pm session in cinema 1
+                     # Assign seats 51-61 of row Z
+                     # Output Booking 12 Z51-Z61
+Request 13 1 15:00 30 # Request 13 is for 30 tickets for the 3:00pm session in cinema 1
+                     # Assign seat 1-30 of row Y
+                     # Output Booking Y1-Y30
+Request 14 1 15:00 20 # Request 14 is for 20 tickets for the 3:00pm session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Request 15 1 15:00 19 # Request 15 is for 19 tickets for the 3:00pm session in cinema 1
+                     # Assign seat 62-80 of row Z
+                     # Output Booking Z62-Z80
+Request 16 1 15:00 1 # Request 16 is for 1 ticket for the 3:00pm session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Print 1 09:00
+Print 1 12:00
+Print 1 15:00
+
+# Make booking interleaving cinemas and sessions:
+Request 17 1 12:00 30 # Request 17 is for 30 tickets for the 12:00pm session in cinema 1
+                     # Assign seats 1-30 of row Y
+                     # Output Booking 11 Y1-Y30
+Request 18 2 09:00 13 # Request 18 is for 13 tickets for the 9:00am session in cinema 2
+                     # Assign seats 1-13 of row U
+                     # Output Booking 12 U1-U13
+Request 19 1 09:00 13 # Request 19 is for 13 tickets for the 9:00am session in cinema 1
+                     # Assign seat 11-23 of row Y
+                     # Output Booking Y11-Y23
+Request 20 2 12:00 40 # Request 20 is for 40 tickets for the 12:00pm session in cinema 2
+                     # Assign seat 1-40 of row C
+                     # Output Booking C1-C40
+Request 21 1 12:00 30 # Request 21 is for 30 tickets for the 12:00pm session in cinema 1
+                     # Assign no seats
+                     # Output Booking rejected
+Request 22 1 12:00 29 # Request 22 is for 29 tickets for the 12:00pm session in cinema 1
+                     # Assign seat 52-80 of row Z
+                     # Output Booking Z52-Z80
+Request 23 2 09:00 13 # Request 23 is for 13 tickets for the 9:00am session in cinema 2
+                     # Assign seat 1-13 of row C
+                     # Output Booking C1-C13
+Print 1 09:00  # Print the bookings for the 9:00am session in cinema 1
+Print 1 12:00 # Print the bookings for the 12:00pm session in cinema 1
+Print 1 15:00  # Print the bookings for the 3:00pm session in cinema 1
+Print 2 12:00  # Print the bookings for the 12:00pm session in cinema 2
+Print 2 09:00  # Print the bookings for the 9:00am session in cinema 2
+
+
+

@@ -1,0 +1,76 @@
+objc[38417]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/bin/java (0x10a5204c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10a5a44e0). One of the two will be used. Which one is undefined.
+The Shape Of Water
+I,Tonya
+Black Panther
+Booking 1 N1-N10
+Booking 2 S1-S30
+Booking rejected
+Booking 4 N11-N30
+Booking 5 W1
+Booking rejected
+Booking 7 W2-W4
+The Shape Of Water
+N: 1-10,11-30
+S: 1-30
+W: 1,2-4
+Cancel 1
+Cancel 5
+Cancel 2
+The Shape Of Water
+N: 11-30
+W: 2-4
+Booking 8 S1-S20
+Booking 9 N1-N5
+Booking 10 N6
+The Shape Of Water
+N: 1-5,6,11-30
+S: 1-20
+W: 2-4
+Change rejected
+Change 10 W5-W29
+The Shape Of Water
+N: 1-5,11-30
+S: 1-20
+W: 2-4,5-29
+Change 8 S1-S20
+Change 9 N1-N5
+Change 9 N1-N6
+The Shape Of Water
+N: 1-6,11-30
+S: 1-20
+W: 2-4,5-29
+Change 7 N1-N30
+Change rejected
+Change 4 S1-S5
+Booking 11 N7-N16
+The Shape Of Water
+N: 1-6,7-16
+S: 1-20
+W: 5-29
+I,Tonya
+N: 1-30
+S: 1-5
+Booking 12 N17-N30
+Cancel 11
+Cancel 12
+Change rejected
+Booking 13 N7-N16
+The Shape Of Water
+N: 1-6,7-16
+S: 1-20
+W: 5-29
+Change 8 L1-L500
+Change rejected
+Change 9 A1-A700
+Change rejected
+Change rejected
+Change 8 L1-L500
+The Shape Of Water
+N: 7-16
+W: 5-29
+I,Tonya
+N: 1-30
+S: 1-5
+Black Panther
+L: 1-500
+A: 1-700

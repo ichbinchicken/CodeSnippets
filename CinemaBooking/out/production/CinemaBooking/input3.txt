@@ -1,0 +1,62 @@
+Cinema 5 N 30  # Row N of cinema 3 has 30 seats
+Cinema 5 S 30  # Row S of cinema 3 has 30 seats
+Cinema 5 W 30  # Row W of cinema 3 has 30 seats
+Cinema 6 L 700   # Row L of cinema 6 has 700 seats
+Cinema 6 A 700  # Row A of cinema 6 has 700 seats
+Session 5 14:00 The Shape Of Water
+Session 5 20:00 I,Tonya # I,Tonya is showing at 8:00pm session in cinema 5
+Session 6 08:00 Black Panther
+
+Print 5 14:00
+Print 5 20:00
+Print 6 08:00
+
+Request 1 5 14:00 10 #Booking 1 N1-N10
+Request 2 5 14:00 30 #Booking 2 S1-S30
+Request 3 5 14:00 40 #Booking rejected
+Request 4 5 14:00 20 #Booking 4 N11-N30
+Request 5 5 14:00 1 #Booking 5 W1
+Request 6 5 14:00 30 #Booking rejected
+Request 7 5 14:00 3 #Booking 7 W2-W4
+Print 5 14:00
+
+Cancel 1
+Cancel 5
+Cancel 2
+Print 5 14:00
+
+Request 8 5 14:00 20 #Booking 8 S1-S20
+Request 9 5 14:00 5 #Booking 9 N1-N5
+Request 10 5 14:00 1 #Booking 10 N6
+Print 5 14:00
+
+Change 10 5 14:00 30 #Change rejected
+Change 10 5 14:00 25 #Change 7 5 14:00 W5-W29
+Print 5 14:00
+Change 8 5 14:00 20 #Change 8 S1-S20
+Change 9 5 14:00 5 #Change 9 N1-N5
+Change 9 5 14:00 6 #Change 9 N1-N6
+Print 5 14:00
+
+Change 7 5 20:00 30 #Change 7 N1-N30
+Change 4 5 20:00 40 #Change rejected
+Change 4 5 20:00 5 # Change 4 S1-S5
+Request 11 5 14:00 10 #Booking 11 N7-N16
+Print 5 14:00
+Print 5 20:00
+Request 12 5 14:00 14 #Booking 12 N17-N30
+Cancel 11
+Cancel 12
+Change 8 5 14:00 40 #Change rejected
+Request 13 5 14:00 10 #Booking 13 N7-N16
+Print 5 14:00
+
+Change 8 6 08:00 500 #Change L1-L500
+Change 9 6 08:00 900 #Change rejected
+Change 9 6 08:00 700 #Change A1-A700
+Change 10 6 08:00 700 #Change rejected
+Change 7 6 08:00 300 #Change rejected
+Change 8 6 08:00 500 #Change 8 L1-L500
+Print 5 14:00
+Print 5 20:00
+Print 6 08:00
