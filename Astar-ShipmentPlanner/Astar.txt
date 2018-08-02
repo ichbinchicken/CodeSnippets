@@ -1,0 +1,23 @@
+OPEN = PriorityQueue containing START
+CLOSED = empty Set
+while OPEN is not empty and the lowest rank item in OPEN is not the GOAL:
+  current = remove lowest rank item from OPEN
+  add current to CLOSED
+  for each neighbour in neighbours of current:
+    cost = g(current) + movementCost(current, neighbour)
+    if neighbor in OPEN and cost less than g(neighbor):
+      remove neighbor from OPEN, because new path is better
+    if neighbor in CLOSED and cost less than g(neighbor):
+      remove neighbor from CLOSED, in case heuristic isn't admissible  
+      // 因为我的totalCost一定会越来越大，如果当前的这个totalCost小于CLOSE里含有一样地点的state
+      // 说明我在基于这个点expand的totalCost一定不是最小的，所以我要重新expand。
+    
+    if neighbour not in OPEN and neighbour not in CLOSED:
+      set g(neighbour) to cost
+      add neighbour to OPEN with rank g(neighbour) + h(neighbour)
+      set neighbour's parent to current
+
+if lowest ranked item in OPEN is the goal:
+  return the path of parents back to the start
+else:
+  return no goal found

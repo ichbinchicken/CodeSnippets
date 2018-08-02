@@ -1,0 +1,136 @@
+# 15-node complete graph
+# 14 orders to be fulfilled
+Refuelling 49 Sydney
+Refuelling 90 AD
+Refuelling 39 AE
+Refuelling 52 AG
+Refuelling 100 AH
+Refuelling 68 AA
+Refuelling 57 AC
+Refuelling 21 AJ
+Refuelling 12 AM
+Refuelling 59 AI
+Refuelling 64 AL
+Refuelling 5 AK
+Refuelling 34 AB
+Refuelling 10 AN
+Refuelling 68 AF
+Time 16 Sydney AD
+Time 805 Sydney AE
+Time 210 Sydney AG
+Time 477 Sydney AH
+Time 293 Sydney AA
+Time 481 Sydney AC
+Time 574 Sydney AJ
+Time 765 Sydney AM
+Time 331 Sydney AI
+Time 1 Sydney AL
+Time 824 Sydney AK
+Time 457 Sydney AB
+Time 387 Sydney AN
+Time 462 Sydney AF
+Time 821 AD AE
+Time 226 AD AG
+Time 493 AD AH
+Time 309 AD AA
+Time 497 AD AC
+Time 590 AD AJ
+Time 781 AD AM
+Time 347 AD AI
+Time 17 AD AL
+Time 840 AD AK
+Time 473 AD AB
+Time 403 AD AN
+Time 478 AD AF
+Time 595 AE AG
+Time 328 AE AH
+Time 512 AE AA
+Time 324 AE AC
+Time 231 AE AJ
+Time 40 AE AM
+Time 474 AE AI
+Time 804 AE AL
+Time 19 AE AK
+Time 348 AE AB
+Time 418 AE AN
+Time 343 AE AF
+Time 267 AG AH
+Time 83 AG AA
+Time 271 AG AC
+Time 364 AG AJ
+Time 555 AG AM
+Time 121 AG AI
+Time 209 AG AL
+Time 614 AG AK
+Time 247 AG AB
+Time 177 AG AN
+Time 252 AG AF
+Time 184 AH AA
+Time 4 AH AC
+Time 97 AH AJ
+Time 288 AH AM
+Time 146 AH AI
+Time 476 AH AL
+Time 347 AH AK
+Time 20 AH AB
+Time 90 AH AN
+Time 15 AH AF
+Time 188 AA AC
+Time 281 AA AJ
+Time 472 AA AM
+Time 38 AA AI
+Time 292 AA AL
+Time 531 AA AK
+Time 164 AA AB
+Time 94 AA AN
+Time 169 AA AF
+Time 93 AC AJ
+Time 284 AC AM
+Time 150 AC AI
+Time 480 AC AL
+Time 343 AC AK
+Time 24 AC AB
+Time 94 AC AN
+Time 19 AC AF
+Time 191 AJ AM
+Time 243 AJ AI
+Time 573 AJ AL
+Time 250 AJ AK
+Time 117 AJ AB
+Time 187 AJ AN
+Time 112 AJ AF
+Time 434 AM AI
+Time 764 AM AL
+Time 59 AM AK
+Time 308 AM AB
+Time 378 AM AN
+Time 303 AM AF
+Time 330 AI AL
+Time 493 AI AK
+Time 126 AI AB
+Time 56 AI AN
+Time 131 AI AF
+Time 823 AL AK
+Time 456 AL AB
+Time 386 AL AN
+Time 461 AL AF
+Time 367 AK AB
+Time 437 AK AN
+Time 362 AK AF
+Time 70 AB AN
+Time 5 AB AF
+Time 75 AN AF
+Shipment AG AJ
+Shipment Sydney AC
+Shipment AA AK
+Shipment AD AG
+Shipment AC AF
+Shipment AE AG
+Shipment AI AN
+Shipment AK AB
+Shipment AB AA
+Shipment AC AJ
+Shipment AL AE
+Shipment AC AM
+Shipment AJ AF
+Shipment AJ AM

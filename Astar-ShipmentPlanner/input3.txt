@@ -1,0 +1,228 @@
+# 20-node complete graph
+# 16 orders to be fulfilled
+Refuelling 7 Sydney
+Refuelling 97 AR
+Refuelling 40 AG
+Refuelling 45 AL
+Refuelling 3 AF
+Refuelling 62 AB
+Refuelling 20 AK
+Refuelling 79 AO
+Refuelling 70 AS
+Refuelling 76 AP
+Refuelling 38 AA
+Refuelling 56 AE
+Refuelling 62 AM
+Refuelling 4 AI
+Refuelling 82 AD
+Refuelling 71 AQ
+Refuelling 62 AH
+Refuelling 43 AN
+Refuelling 98 AC
+Refuelling 30 AJ
+Time 531 Sydney AR
+Time 519 Sydney AG
+Time 590 Sydney AL
+Time 32 Sydney AF
+Time 250 Sydney AB
+Time 553 Sydney AK
+Time 250 Sydney AO
+Time 329 Sydney AS
+Time 616 Sydney AP
+Time 813 Sydney AA
+Time 945 Sydney AE
+Time 314 Sydney AM
+Time 389 Sydney AI
+Time 425 Sydney AD
+Time 325 Sydney AQ
+Time 80 Sydney AH
+Time 473 Sydney AN
+Time 127 Sydney AC
+Time 789 Sydney AJ
+Time 12 AR AG
+Time 59 AR AL
+Time 499 AR AF
+Time 281 AR AB
+Time 22 AR AK
+Time 281 AR AO
+Time 202 AR AS
+Time 85 AR AP
+Time 282 AR AA
+Time 414 AR AE
+Time 217 AR AM
+Time 142 AR AI
+Time 106 AR AD
+Time 206 AR AQ
+Time 451 AR AH
+Time 58 AR AN
+Time 404 AR AC
+Time 258 AR AJ
+Time 71 AG AL
+Time 487 AG AF
+Time 269 AG AB
+Time 34 AG AK
+Time 269 AG AO
+Time 190 AG AS
+Time 97 AG AP
+Time 294 AG AA
+Time 426 AG AE
+Time 205 AG AM
+Time 130 AG AI
+Time 94 AG AD
+Time 194 AG AQ
+Time 439 AG AH
+Time 46 AG AN
+Time 392 AG AC
+Time 270 AG AJ
+Time 558 AL AF
+Time 340 AL AB
+Time 37 AL AK
+Time 340 AL AO
+Time 261 AL AS
+Time 26 AL AP
+Time 223 AL AA
+Time 355 AL AE
+Time 276 AL AM
+Time 201 AL AI
+Time 165 AL AD
+Time 265 AL AQ
+Time 510 AL AH
+Time 117 AL AN
+Time 463 AL AC
+Time 199 AL AJ
+Time 218 AF AB
+Time 521 AF AK
+Time 218 AF AO
+Time 297 AF AS
+Time 584 AF AP
+Time 781 AF AA
+Time 913 AF AE
+Time 282 AF AM
+Time 357 AF AI
+Time 393 AF AD
+Time 293 AF AQ
+Time 48 AF AH
+Time 441 AF AN
+Time 95 AF AC
+Time 757 AF AJ
+Time 303 AB AK
+Time 0 AB AO
+Time 79 AB AS
+Time 366 AB AP
+Time 563 AB AA
+Time 695 AB AE
+Time 64 AB AM
+Time 139 AB AI
+Time 175 AB AD
+Time 75 AB AQ
+Time 170 AB AH
+Time 223 AB AN
+Time 123 AB AC
+Time 539 AB AJ
+Time 303 AK AO
+Time 224 AK AS
+Time 63 AK AP
+Time 260 AK AA
+Time 392 AK AE
+Time 239 AK AM
+Time 164 AK AI
+Time 128 AK AD
+Time 228 AK AQ
+Time 473 AK AH
+Time 80 AK AN
+Time 426 AK AC
+Time 236 AK AJ
+Time 79 AO AS
+Time 366 AO AP
+Time 563 AO AA
+Time 695 AO AE
+Time 64 AO AM
+Time 139 AO AI
+Time 175 AO AD
+Time 75 AO AQ
+Time 170 AO AH
+Time 223 AO AN
+Time 123 AO AC
+Time 539 AO AJ
+Time 287 AS AP
+Time 484 AS AA
+Time 616 AS AE
+Time 15 AS AM
+Time 60 AS AI
+Time 96 AS AD
+Time 4 AS AQ
+Time 249 AS AH
+Time 144 AS AN
+Time 202 AS AC
+Time 460 AS AJ
+Time 197 AP AA
+Time 329 AP AE
+Time 302 AP AM
+Time 227 AP AI
+Time 191 AP AD
+Time 291 AP AQ
+Time 536 AP AH
+Time 143 AP AN
+Time 489 AP AC
+Time 173 AP AJ
+Time 132 AA AE
+Time 499 AA AM
+Time 424 AA AI
+Time 388 AA AD
+Time 488 AA AQ
+Time 733 AA AH
+Time 340 AA AN
+Time 686 AA AC
+Time 24 AA AJ
+Time 631 AE AM
+Time 556 AE AI
+Time 520 AE AD
+Time 620 AE AQ
+Time 865 AE AH
+Time 472 AE AN
+Time 818 AE AC
+Time 156 AE AJ
+Time 75 AM AI
+Time 111 AM AD
+Time 11 AM AQ
+Time 234 AM AH
+Time 159 AM AN
+Time 187 AM AC
+Time 475 AM AJ
+Time 36 AI AD
+Time 64 AI AQ
+Time 309 AI AH
+Time 84 AI AN
+Time 262 AI AC
+Time 400 AI AJ
+Time 100 AD AQ
+Time 345 AD AH
+Time 48 AD AN
+Time 298 AD AC
+Time 364 AD AJ
+Time 245 AQ AH
+Time 148 AQ AN
+Time 198 AQ AC
+Time 464 AQ AJ
+Time 393 AH AN
+Time 47 AH AC
+Time 709 AH AJ
+Time 346 AN AC
+Time 316 AN AJ
+Time 662 AC AJ
+Shipment AR AO
+Shipment AS AR
+Shipment AS AL
+Shipment AE AM
+Shipment AL AN
+Shipment AS AK
+Shipment AF AI
+Shipment AH AB
+Shipment AM AG
+Shipment AH AF
+Shipment AA AI
+Shipment AD AK
+Shipment AH AL
+Shipment AP AR
+Shipment AA AL
+Shipment AG AO

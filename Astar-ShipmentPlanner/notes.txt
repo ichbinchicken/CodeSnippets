@@ -1,0 +1,37 @@
+don't forget to delete the last destination's refuelling time
+write run time complexity
+shipments are distinct
+the name of each port will be just one word
+the ship always starts in Sydney (and can finish anywhere)
+
+
+heuristic:
+from neighbourstate, how much time do i have to finish the remaining orders + shortest path from the neighbour location
+to each start location of remaining orders?
+
+questions to ask:
+1. dependency between shipmentplanner and Astar?
+2. heuristic override tag?
+
+todo:
+1. write performance and complexity analysis
+2. clean up and write comments for each method/constructor/class *
+    a. shipmentplanner *
+    b. state *
+    c. astar *
+    d. map *
+    e. port *
+    f. heuristic *
+    g. zeroheuristic *
+    h. costheuristic *
+3. draw uml *
+4. check tests on cse server
+
+filename      type     expanded        cost
+fb.txt        costH      366           1296
+fb.txt        zeroH      469
+
+input1.txt    costH      524           265
+              zeroH      745
+
+

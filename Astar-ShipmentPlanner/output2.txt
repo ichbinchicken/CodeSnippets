@@ -1,0 +1,22 @@
+204335 nodes expanded
+cost = 6250
+Ship Sydney to AC
+Ship AC to AJ
+Ship AJ to AF
+Ship AF to AB
+Ship AB to AA
+Ship AA to AK
+Ship AK to AB
+Ship AB to AI
+Ship AI to AN
+Ship AN to AL
+Ship AL to AE
+Ship AE to AG
+Ship AG to AD
+Ship AD to AG
+Ship AG to AJ
+Ship AJ to AM
+Ship AM to AC
+Ship AC to AF
+Ship AF to AC
+Ship AC to AM

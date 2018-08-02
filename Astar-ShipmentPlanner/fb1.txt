@@ -1,0 +1,47 @@
+# min 1177
+# Feel the powers of 2
+Refuelling 2 Sydney
+Refuelling 4 A
+Refuelling 8 B
+Refuelling 16 C
+Refuelling 32 D
+Refuelling 64 E
+Refuelling 128 F
+Refuelling 256 G
+# Road to home
+Time 13 Sydney A
+Time 99913000 Sydney B
+Time 99913000 Sydney C
+Time 99913000 Sydney D
+Time 99913000 Sydney E
+Time 99913000 Sydney F
+Time 99913000 Sydney G
+Time 13 A B
+Time 50 A D
+Time 99995000 A C
+Time 99995000 A E
+Time 99995000 A F
+Time 99995000 A G
+Time 25 B C
+Time 100 B D
+Time 75 B E
+Time 999997599 B F
+Time 999997599 B G
+Time 96 C E
+Time 99999006 C D
+Time 99999006 C F
+Time 99999006 C G
+Time 54 D F
+Time 99999004 D E
+Time 65 D G
+Time 12 E F
+Time 99999912 E G
+Time 1 F G
+# Plenty of jobs, get going!
+Shipment Sydney A
+Shipment B C
+Shipment D G
+Shipment E B
+Shipment F G
+Shipment E C
+Shipment D F

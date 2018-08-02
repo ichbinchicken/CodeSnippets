@@ -1,0 +1,31 @@
+# 6-node complete graph
+# 7 orders to be fulfilled
+Refuelling 9 Sydney       # Refuelling time is 9 days in Sydney
+Refuelling 12 B           # Refuelling time is 12 days in B
+Refuelling 5 C            # Refuelling time is 5 days in C
+Refuelling 10 D           # Refuelling time is 10 days in D
+Refuelling 4 E            # Refuelling time is 4 days in E
+Refuelling 6 F            # Refuelling time is 6 days in F
+Time 18 Sydney B          # Travel time is 18 days from Sydney to B
+Time 24 Sydney C          # Travel time is 24 days from Sydney to C
+Time 18 Sydney D          # Travel time is 18 days from Sydney to D
+Time 25 Sydney E          # Travel time is 25 days from Sydney to E
+Time 10 Sydney F          # Travel time is 10 days from Sydney to F
+Time 10 B C               # Travel time is 10 days from B to C
+Time 24 B D               # Travel time is 24 days from B to D
+Time 32 B E               # Travel time is 32 days from B to E
+Time 24 B F               # Travel time is 24 days from B to F
+Time 14 C D               # Travel time is 14 days from C to D
+Time 8 C E                # Travel time is 8 days from C to E
+Time 29 C F               # Travel time is 29 days from C to F
+Time 13 D E               # Travel time is 13 days from D to E
+Time 29 D F               # Travel time is 29 days from D to F
+Time 22 E F               # Travel time is 22 days from E to F
+
+Shipment C F              # Shipment is required from C to F
+Shipment Sydney E         # Shipment is required from Sydney to E
+Shipment D C              # Shipment is required from D to C
+Shipment B Sydney         # Shipment is required from B to Sydney
+Shipment F B              # Shipment is required from F to B
+Shipment B E              # Shipment is required from B to E
+Shipment C E              # Shipment is required from C to E

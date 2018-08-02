@@ -1,0 +1,12 @@
+524 nodes expanded
+cost = 265
+Ship Sydney to B
+Ship B to Sydney
+Ship Sydney to E
+Ship E to C
+Ship C to E
+Ship E to D
+Ship D to C
+Ship C to F
+Ship F to B
+Ship B to E
