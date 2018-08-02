@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="edit_events">
+<form method="POST" name="edit_event" onsubmit="return validate_edit()">
+    <table class="edit">
+        <tr><td style="width:60%">Name:</td><td><input type="text" name="event_name" value="{{ event.name }}" required></td></tr>
+        <tr><td>Venue:</td><td><input type="text" name="venue" value="{{ event.venue }}" required></td></tr>   
+{% if event.seminar_or_course == "Course" %}
+        <tr><td>Capacity:</td><td><input type="text" name="event_capacity" value="{{ event.capacity }}" required></td></tr>
+        <tr><td>Start Time (HH:mm):</td><td><input type="text" name="event_start_time" value="{{ event.start_time }}" required></td></tr>
+        <tr><td>End Time (HH:mm):</td><td><input type="text" name="event_end_time" value="{{ event.end_time }}" required></td></tr>
+{% endif %}
+        <tr><td>Start Date (YYYY/MM/DD):</td><td><input type="text" name="start_date" value="{{ event.start_date }}" required></td></tr>
+        <tr><td>End Date (YYYY/MM/DD):</td><td><input type="text" name="end_date" value="{{ event.end_date }}" required></td></tr>
+        <tr><td>Deregister Date (YYYY/MM/DD):</td><td><input type="text" name="deregister_date" value="{{ event.deregister_date }}" required></td></tr>
+        <tr><td>Early Bird Start (YYYY/MM/DD):</td><td><input type="text" name="early_bird_start" value="{{ event.early_bird_start_date }}" required></td></tr>
+        <tr><td>Early Bird End (YYYY/MM/DD):</td><td><input type="text" name="early_bird_end" value="{{ event.early_bird_end_date }}" required></td></tr>
+        <tr><td>Description:</td><td><input type="text" name="event_description" value="{{ event.description }}" required></td></tr>
+{% if event.seminar_or_course == "Seminar" %}
+    {% for session in event.sessions %}
+        <tr><th>Session {{session.get_id()}}</th><td><button type="button" onclick="toggle_details_session({{session.get_id()}})" class="edit_button">Toggle Session Information</button></td></tr>
+        <tr><td colspan="2"><div id="toggle_session_details_{{ session.get_id() }}" style="display: none">
+            <table>
+            <tr><td style="width:60%">Name:</td><td><input type="text" name="sess_{{session.get_id()}}_name" value="{{session.name}}" required></td></tr>
+            <tr><td>Speaker:</td><td><input type="text" name="sess_{{session.get_id()}}_speaker" value="{{session.speaker}}" required></td></tr>
+            <tr><td>Description:</td><td><input type="text" name="sess_{{session.get_id()}}_description" value="{{session.description}}" required></td></tr>
+            <tr><td>Start Time (HH:mm):</td><td><input type="text" name="sess_{{session.get_id()}}_start_time" value="{{session.start_time}}" required></td></tr>
+            <tr><td>End Time (HH:mm):</td><td><input type="text" name="sess_{{session.get_id()}}_end_time" value="{{session.end_time}}" required></td></tr>
+            <tr><td>Date (YYYY/MM/DD):</td><td><input type="text" name="sess_{{session.get_id()}}_date" value="{{session.date}}" required></td></tr>
+            <tr><td>Capacity:</td><td><input type="text" name="sess_{{session.get_id()}}_capacity" value="{{session.capacity}}" required></td></tr>
+            </table>
+        </div></td></tr>
+    {% endfor %}
+{% endif %}
+    <tr><td colspan="2" text-align="center">
+        <input type="hidden" name="event_type" value={{event.seminar_or_course}}>
+        <input type="hidden" name="event_id" value={{event.get_id()}}>
+        <button type="submit" value="Submit" class="edit_button">Submit Edit</button>
+    </td></tr>
+    </table>
+</form>
+</div>
+
+
+{% endblock %}

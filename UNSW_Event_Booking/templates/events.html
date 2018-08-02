@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% import "seminar_macros.html" as seminar_macros %}
+{% import "course_macros.html" as course_macros %}
+{% import "macros.html" as macros %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand"><b>Open Events</b></a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                {% if current_user.is_anonymous %}
+                {% else %}
+                    <a class="nav-item nav-link active" href="{{ url_for('logout') }}"><i>Logout</i></a>
+                {% endif%}
+                <a class="nav-item nav-link active" href="{{ url_for('dashboard') }}">Go To My Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <table class="table table-borderless" style="margin-left: 40px;table-layout: fixed">
+        <thead class="thead">
+            <tr>
+                <th scope="col" style="text-align: left">Open Courses:</th>
+                <th scope="col" style="text-align: left">Open Seminars:</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td valign="top">
+                {% if open_courses == [] %}
+                    <p>No Open Courses</p>
+                {% else %}
+                    {% for c in open_courses %}
+                        <p><b>Course Name: </b>{{ c.name }}</p>
+                            <button class="btn btn-primary" onclick="toggle_details({{ c.get_id() }})">Toggle Course Details</button>
+                            <br><br>
+                            {% set register_state = current_user.check_register_state(c.get_id()) %}
+                            {{ course_macros.register(current_user, c.get_id(), register_state, action_state, action_event, c) }}
+                        <br>
+                        <div id="toggle_event_details_{{ c.get_id() }}" class="card w-75 shadow border-0 light-card" style="display: none">
+                            <p><b>Course Venue:</b> {{ c.venue }}</p>
+                            <p><b>Course Start Date:</b> {{ c.start_date }}</p>
+                            <p><b>Course Deregister Date:</b> {{ c.deregister_date }}</p>
+                            <p><b>Course End Date:</b> {{ c.end_date }}</p>
+                            <p><b>Course Early Bird Period:</b> {{ c.early_bird_start_date }} - {{ c.early_bird_end_date }} </p>
+                            <p><b>Course Status:</b> {{ c.status }}</p>
+                            <p><b>Course Convenor:</b> {{ c.convenor }}</p>
+                            <p><b>Course Description:</b> {{ c.description }}</p>
+                            <p><b>Course Capacity:</b> {{ c.attendees | length }}/{{ c.capacity }}</p>
+                        </div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+            </td>
+
+            <td valign="top">
+                {% if open_seminars == [] %}
+                    <p>No Open Seminars</p>
+                {% else %}
+                    {% for s in open_seminars %}
+                        <p><b>Seminar Name: </b>{{ s.name }}</p>
+                            <button class="btn btn-primary" onclick="toggle_details({{ s.get_id() }})">Toggle Seminar Details</button>
+                            <br><br>
+                            {% set register_state = current_user.check_register_state(s.get_id()) %}
+                            {{ seminar_macros.register(current_user, s, s.get_id(), register_state, action_state, action_event) }}
+                        <br>
+                        <div id="toggle_event_details_{{ s.get_id() }}" class="card shadow border-0 light-card w-75" style="display: none">
+                            <p><b>Seminar Venue:</b> {{ s.venue }}</p>
+                            <p><b>Seminar Start Date:</b> {{ s.start_date }}</p>
+                            <p><b>Seminar Deregister Date:</b> {{ s.deregister_date }}</p>
+                            <p><b>Seminar End Date:</b> {{ s.end_date }}</p>
+                            <p><b>Seminar Early Bird Period:</b> {{ s.early_bird_start_date }} - {{ s.early_bird_end_date }} </p>
+                            <p><b>Seminar Status:</b> {{ s.status }}</p>
+                            <p><b>Seminar Convenor:</b> {{ s.convenor }}</p>
+                            <p><b>Seminar Description:</b> {{ s.description }}</p>
+
+                            <p><u><b>Sessions:</b></u></p>
+
+                            {% for session in s.sessions %}
+                                <p><b>Session Name:</b> {{ session.name }}</p>
+                                    <button class="btn btn-primary" onclick="toggle_details_session({{ session.get_id() }})">Toggle Session Details</button></p>
+                                <div id="toggle_session_details_{{ session.get_id() }}" class="card shadow border-0 light-card w-75" style="display: none">
+                                    <p><b>Speaker Email:</b> {{ session.speaker }}</p>
+                                    <p><b>Session Description:</b> {{ session.description }}</p>
+                                    <p><b>Session Start Time:</b> {{ session.start_time }}</p>
+                                    <p><b>Session End Time:</b> {{ session.end_time }}</p>
+                                    <p><b>Session Capacity:</b> {{ session.attendees | length}}/{{session.capacity }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
+
+

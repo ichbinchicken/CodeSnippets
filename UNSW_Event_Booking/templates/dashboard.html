@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand"><b>Dashboard</b></a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                {% if current_user.is_anonymous %}
+                {% else %}
+                    <a class="nav-item nav-link active" href="{{ url_for('logout') }}"><i>Logout</i></a>
+                {% endif%}
+                <a class="nav-item nav-link active" href="{{ url_for('events') }}">Events</a>
+            </div>
+         </div>
+   </nav>
+
+    <div class="profile-card light-card">
+        {% if current_user.u_type == 0 %}
+           <img src="{{ url_for('static', filename='student.png') }}" alt="student image" style="width:100%">
+        {% elif current_user.u_type == 1 %}
+            <img src="{{ url_for('static', filename='staff.png') }}" alt="staff image" style="width:75%">
+        {% else %}
+        <img src="{{ url_for('static', filename='guest.png') }}" alt="staff image" style="width:75%">
+        {% endif %}
+        {% if current_user.u_type != 2 %}
+        <p class="profile-title">Name: {{ current_user.name }}</p>
+        <p class="profile-title">Email: {{ current_user.email }}</p>
+        <p class="profile-title">zID: {{ current_user.z_id }}</p>
+        {% else %}
+        <p class="profile-title">Email: {{ current_user.name }}</p>
+        {% endif %}
+    </div>
+
+    
+
+    <div style="margin: 30px">
+        <h3>My Registered Events</h3>
+        {% if current_user.registered_events == []%}
+            <p>There is no current or past event that I registered.</p>
+        {% else %}
+            {% for event in current_user.registered_events  %}
+                {% set event_id = event.get_id()|int * 100 + 100 %}
+                {% if event.seminar_or_course == "Seminar" %}
+                    <p><b>Seminar Name: </b>{{ event.name }} {% if event.status=="cancelled" %} <span class="text-danger font-weight-bold font-italic">&nbsp;&nbsp;&nbsp;&nbsp;This event is cancelled!</span>{% endif %} <br>
+                        <button type="button" class="btn btn-primary" onclick="toggle_details({{ event_id|string }})">Toggle Seminar Details</button></p>
+                    <div class="card w-50 light-card border-0 shadow" id="toggle_event_details_{{ event_id|string }}" style="display: none">
+                        <p><b>Seminar Venue:</b> {{ event.venue }}</p>
+                        <p><b>Seminar Start Date:</b> {{ event.start_date }}</p>
+                        <p><b>Seminar Deregister Date:</b> {{ event.deregister_date }}</p>
+                        <p><b>Seminar End Date:</b> {{ event.end_date }}</p>
+                        <p><b>Seminar Status:</b> {{ event.status }}</p>
+                        <p><b>Seminar Convenor:</b> {{ event.convenor }}</p>
+                        <p><b>Seminar Description:</b> {{ event.description }}</p>
+                        <p><u><b>My registered Sessions:</b></u></p>
+                        {% for session in event.sessions %}
+                            {% for attendee in session.attendees if attendee == current_user.name %}
+                                {% set session_id = session.get_id()|int * 100 + 100 %}
+                                <p><b>Session Name:</b> {{ session.name }} <br>
+                                    <button type="button" class="btn btn-primary" onclick="toggle_details_session({{ session_id|string }})">Toggle Session Details</button></p>
+                                <div id="toggle_session_details_{{ session_id|string }}" class="card light-card w-75 border-0 shadow" style="display: none">
+                                    <p><b>Speaker Name:</b> {{ session.speaker }}</p>
+                                    <p><b>Session Description:</b> {{ session.description }}</p>
+                                    <p><b>Session Start Time:</b> {{ session.start_time }}</p>
+                                    <p><b>Session End Time:</b> {{ session.end_time }}</p>
+                                    <p><b>Session Date:</b> {{ session.date }}</p>
+                                    <p><b>Session Capacity:</b> {{ session.attendees | length}}/{{ session.capacity }}</p>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div><br>
+                {% else %}
+                    <p><b>Course Name:</b> {{ event.name }} {% if event.status=="cancelled" %} <span class="text-danger font-weight-bold font-italic">&nbsp;&nbsp;&nbsp;&nbsp;This event is cancelled!</span>{% endif %} <br>
+                        <button type="button" class="btn btn-primary" onclick="toggle_details({{ event_id|string }})">Toggle Course Details</button></p>
+                    <div id="toggle_event_details_{{ event_id|string }}" class="card light-card w-50 border-0 shadow" style="display: none">
+                        <p><b>Course Venue:</b> {{ event.venue }}</p>
+                        <p><b>Course Start Date:</b> {{ event.start_date }}</p>
+                        <p><b>Course Deregister Date:</b> {{ event.deregister_date }}</p>
+                        <p><b>Course End Date:</b> {{ event.end_date }}</p>
+                        <p><b>Course Status:</b> {{ event.status }}</p>
+                        <p><b>Course Convenor:</b> {{ event.convenor }}</p>
+                        <p><b>Course Description:</b> {{ event.description }}</p>
+                        <p><b>Course Capacity:</b> {{ event.capacity }}</p>
+                    </div><br>
+                {% endif %}
+            {% endfor %}
+    </div>
+        {% endif %}
+
+
+{% if current_user.u_type == 1 %}        
+    <div class="dashboard">
+        <table class="outer">
+            <tr><th colspan="4"><h2>My Posted Events</h2></th></tr>
+            <tr><td style="width:40%"></td><td style="width:30%"></td><td style="width:10%"></td><td style="width:20%"></td></tr>
+        {% if total_num_events == 0 %}
+            <tr><td>No Events Exist</td></tr>
+        {% else %}
+            <tr><th colspan="4" align="center"><h4>Open Courses</h4></th></tr>
+            {% for i in range(0, total_num_events) %}
+            {% set event = all_events[i|string] %}
+                {% if event.seminar_or_course == "Course" and event.status == "open" and event.convenor == current_user.name %}
+                <tr>
+                    <td align="center"><b>Course Name: {{event.name}}</b></td>
+                    <td align="center"><button type="button" class="btn btn-primary" onclick="toggle_details({{ event.get_id() }})">Toggle Event Details</button></td>
+                    <td align="center"><a href="{{url_for('edit_event', event_id=event.get_id())}}"><button class="edit_button">Edit</button></a></td>
+                    <td align="center">
+                        <form method="post">
+                            <input type="hidden" name="cancel" value="cancel">
+                            <input type="hidden" name="handle_form" value="0">
+                            <input type="hidden" name="handle_cancel" value="1">
+                            <input type="hidden" name="event_to_cancel" value="{{ event.get_id() }}">
+                            <button type="submit" class="btn btn-danger" {% if event.status == "cancelled" or event.status == "closed" %}disabled{% endif %}>
+                                Cancel Event
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <tr><td></td><td colspan="3">
+                    <div id="toggle_event_details_{{ event.get_id() }}" style="display: none">
+                        <table style="width:100%">
+                            <tr><td style="width:50%">Convenor: </td><td>{{ event.convenor }}</td></td></tr>
+                            <tr><td>Venue: </td><td>{{ event.venue }}</td></tr>
+                            <tr><td>Number of Registrees: </td><td>{{ event.attendees | length }}/{{ event.capacity }}</td></tr>
+                            <tr><td>Start Date: </td><td>{{ event.start_date }}</td></tr>
+                            <tr><td>End Date: </td><td>{{ event.end_date }}</td></tr>
+                            <tr><td>Early Bird Period:</td><td> {{ event.early_bird_start_date }} - {{ event.early_bird_end_date }} </td></tr>
+                            <tr><td>Deregister Date: </td><td>{{ event.deregister_date }}</td></tr>
+                            <tr><td>Status: </td><td>{{ event.status }}</td></tr>
+                            <tr><td>Description: </td><td>{{ event.description }}</td></tr>
+                            <tr>
+                                <td>Course Registerees:</td>
+                                <td>
+                                    {% if event.attendees == [] %}
+                                        There are no attendees
+                                    {% else %}
+                                        {% for x in range(0, event.attendees | length) %}
+                                            {% if x == event.attendees | length - 1 %}
+                                                {{ event.attendees[x] }}
+                                            {% else %}
+                                                {{ event.attendees[x] }},
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </td>
+                        </tr>
+                        </table>
+                    </div>
+                </td></tr>
+                {% endif %}
+            {% endfor %}
+            
+            <tr><th colspan="4" align="center"><h4>Open Seminars</h4></th></tr>
+            {% for i in range(0, total_num_events) %}
+            {% set event = all_events[i|string] %}
+                {% if event.seminar_or_course == "Seminar" and event.status == "open" and event.convenor == current_user.name %}
+                <tr>
+                    <td align="center"><b>Seminar Name: {{event.name}}</b></td>
+                    <td align="center"><button type="button" class="btn btn-primary" onclick="toggle_details({{ event.get_id() }})">Toggle Event Details</button></td>
+                    <td align="center"><a href="{{url_for('edit_event', event_id=event.get_id())}}"><button class="edit_button">Edit</button></a></td>
+                    <td align="center">
+                        <form method="post">
+                            <input type="hidden" name="cancel" value="cancel">
+                            <input type="hidden" name="handle_form" value="0">
+                            <input type="hidden" name="handle_cancel" value="1">
+                            <input type="hidden" name="event_to_cancel" value="{{ event.get_id() }}">
+                            <button type="submit" class="btn btn-danger" {% if event.status == "cancelled" or event.status == "closed" %}disabled{% endif %}>
+                                Cancel Event
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <tr><td></td><td colspan="3">
+                    <div id="toggle_event_details_{{ event.get_id() }}" style="display: none">
+                        <table class="inner">
+                            <tr><td style="width:50%">Convenor: </td><td>{{ event.convenor }}</td></tr>
+                            <tr><td>Venue: </td><td>{{ event.venue }}</td></tr>
+                            
+                            <tr><td>Start Date: </td><td>{{ event.start_date }}</td></tr>
+                            <tr><td>End Date: </td><td>{{ event.end_date }}</td></tr>
+                            <tr><td>Deregister Date: </td><td>{{ event.deregister_date }}</td></tr>
+                            <tr><td>Early Bird Period:</td><td> {{ event.early_bird_start_date }} - {{ event.early_bird_end_date }} </td></tr>
+                            <tr><td>Status: </td><td>{{ event.status }}</td></tr>
+                            <tr><td>Description: </td><td>{{ event.description }}</td></tr>
+                            <tr><td colspan="2">List of Sessions:</td><tr>
+                            
+                            {% for session in event.sessions %}
+                            <tr><th>Session {{session.get_id()}}: </th><td><button type="button" class="btn btn-primary" onclick="toggle_details_session({{ session.get_id() }})">Toggle Details</button></td></tr>
+                            <tr><td colspan="2"><div id="toggle_session_details_{{session.get_id()}}" style="display: none">
+                                <table class = "inner">
+                                    <tr><td style="width:50%">Speaker Name: </td><td>{{ session.speaker }}</td></tr>
+                                    <tr><td>Number of Registrees: </td><td>{{ session.attendees | length }}/{{ session.capacity }}</td></tr>
+                                    <tr><td>Start Time: </td><td>{{ session.start_time }}</td></tr>
+                                    <tr><td>End Time: </td><td>{{ session.end_time }}</td></tr>
+                                    <tr><td>Date: </td><td>{{ session.date }}</td></tr>
+                                    <tr><td>Description: </td><td>{{ session.description }}</td></tr>
+                                    <tr><td>Attendees:
+                                        <td>
+                                        {% if session.attendees == [] %}
+                                            There are no attendees
+                                        {% else %}
+                                            {% for x in range(0, session.attendees | length) %}
+                                                {% if x == session.attendees | length - 1 %}
+                                                    {{ session.attendees[x] }}
+                                                {% else %}
+                                                    {{ session.attendees[x] }},
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        </td>
+                                    </td></tr>
+                                </table>
+                            </div></td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td></tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+    <!---------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <table class="outer">
+            <tr><th colspan="2" align="center"><h4>Closed or Cancelled Courses</h4></th></tr>
+            {% for i in range(0, total_num_events) %}
+            {% set event = all_events[i|string] %}
+                {% if event.seminar_or_course == "Course" and event.status != "open" and event.convenor == current_user.name %}
+                <tr>
+                    <td align="center" style="width:40%"><b>Course Name: {{event.name}}</b></td>
+                    <td align="center" style="width:60%"><button type="button" class="btn btn-primary" onclick="toggle_details({{ event.get_id() }})">Toggle Event Details</button></td>
+                </tr>
+                <tr><td></td><td>
+                    <div id="toggle_event_details_{{ event.get_id() }}" style="display: none">
+                        <table style="width:100%">
+                            <tr><td>Status: </td><td>{{ event.status }}</td></tr>
+                            <tr><td style="width:50%">Convenor: </td><td>{{ event.convenor }}</td></td></tr>
+                            <tr><td>Venue: </td><td>{{ event.venue }}</td></tr>
+                            <tr><td>Start Date: </td><td>{{ event.start_date }}</td></tr>
+                            <tr><td>End Date: </td><td>{{ event.end_date }}</td></tr>
+                            <tr><td>Deregister Date: </td><td>{{ event.deregister_date }}</td></tr>
+                            <tr><td>Early Bird Period:</td><td> {{ event.early_bird_start_date }} - {{ event.early_bird_end_date }} </td></tr>
+                            <tr><td>Registree Count: </td><td>{{ event.attendees | length }}/{{ event.capacity }}</td></tr>
+                            <tr><td>Description: </td><td>{{ event.description }}</td></tr>
+                        </table>
+                    </div>
+                </td></tr>
+                {% endif %}
+            {% endfor %}
+
+            <tr><th colspan="2" align="center"><h4>Closed or Cancelled Seminars</h4></th></tr>
+            {% for i in range(0, total_num_events) %}
+            {% set event = all_events[i|string] %}
+                {% if event.seminar_or_course == "Seminar" and event.status != "open" and event.convenor == current_user.name %}
+                <tr>
+                    <td align="center"><b>Seminar Name: {{event.name}}</b></td>
+                    <td align="center"><button type="button" class="btn btn-primary" onclick="toggle_details({{ event.get_id() }})">Toggle Event Details</button></td>
+                </tr>
+                <tr><td></td><td>
+                    <div id="toggle_event_details_{{ event.get_id() }}" style="display: none">
+                        <table class = "inner">
+                            <tr><td>Status: </td><td>{{ event.status }}</td></tr>
+                            <tr><td style="width:40%">Convenor: </td><td style="width:60%">{{ event.convenor }}</td></tr>
+                            <tr><td>Venue: </td><td>{{ event.venue }}</td></tr>
+                            <tr><td>Start Date: </td><td>{{ event.start_date }}</td></tr>
+                            <tr><td>End Date: </td><td>{{ event.end_date }}</td></tr>
+                            <tr><td>Deregister Date: </td><td>{{ event.deregister_date }}</td></tr>
+                            <tr><td>Early Bird Period:</td><td> {{ event.early_bird_start_date }} - {{ event.early_bird_end_date }} </td></tr>
+                            <tr><td>Description: </td><td>{{ event.description }}</td></tr>
+                            <tr><td colspan="2">List of Sessions:</td><tr>
+                            {% for session in event.sessions %}
+                            <tr><td>Session {{session.get_id()}}: </td><td> <button type="button" class="btn btn-primary" onclick="toggle_details_session({{ session.get_id() }})">Toggle Details</button></td></tr>
+                            <tr><td colspan="2"><div id="toggle_session_details_{{session.get_id()}}" style="display: none">
+                                <table class = "inner">
+                                    <tr><td style="width:40%">Speaker Name: </td><td style="width:60%">{{ session.speaker }}</td></tr>
+                                    <tr><td>Start Time: </td><td>{{ session.start_time }}</td></tr>
+                                    <tr><td>End Time: </td><td>{{ session.end_time }}</td></tr>
+                                    <tr><td>Date: </td><td>{{ session.date }}</td></tr>
+                                    <tr><td>Registeree Count: </td><td>{{ session.attendees | length}}/{{ session.capacity }}</td></tr>
+                                    <tr><td>Description: </td><td>{{ session.description }}</td></tr>
+                                </table>
+                            </div></td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </td></tr>
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+        </table>
+    </div>    
+        
+    <h3 style="margin: 30px;">Create An Event</h3>
+    <table style="width:50%; margin-left: 30px;">
+        <tr>
+            {% if not is_form %}
+            <td>
+                <h6>Which event do you want to create?</h6>
+            </td>
+            <td>
+                <form method="POST" >
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline1" name="type" value="course" class="custom-control-input" required>
+                        <label class="custom-control-label" for="customRadioInline1"><i>Course</i></label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="type" value="seminar" class="custom-control-input" required>
+                        <label class="custom-control-label" for="customRadioInline2"><i>Seminar</i></label>
+                    </div>
+                    <input type="hidden" name="handle_form" value="0">
+                    <input type="hidden" name="handle_cancel" value="0">
+                    <input type="hidden" name="edit_event" value="0">
+                    <button type="submit" class="btn btn-primary">Fill In Details</button>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td>
+                {% if is_form %}
+                    <form method="POST" name="create_event" onsubmit="return validateAll({{is_course_js}})">
+                        {% if is_course %}
+                            Course Name:<br>
+                        {% else %}
+                            Seminar Name:<br>
+                        {% endif %}
+
+                        <input name="event_name" class = "w3-input" required><br><br>
+                        Venue:<br>
+                        <input name="venue" class="w3-input" required><br><br>
+                        Start Date: (YYYY-MM-DD or YYYY/MM/DD)<br>
+                        <input type="date" name="start_date"  class="w3-input" required><br><br>
+                        End Date: (YYYY-MM-DD or YYYY/MM/DD)<br>
+                        <input type="date" name="end_date"  class="w3-input" required><br><br>
+                        {% if is_course %}
+                            Start Time:HH:MM(24HR)<br>
+                            <input type="time" name ="start_time"  class="w3-input" required><br><br>
+                            End Time: HH:MM(24HR)<br>
+                            <input type="time" name ="end_time" class="w3-input" required><br><br>                            
+                        {% endif %}
+                        Deregister Window Close Date: (YYYY-MM-DD or YYYY/MM/DD)<br>
+                        <input type="date" name="deregister_date" class="w3-input" required><br><br>
+                        Early Bird Registration Open Date: (YYYY-MM-DD or YYYY/MM/DD) <br>
+                        <input type="date" name="early_bird_start_date" class="w3-input" required><br><br>
+                        Early Bird Registration Close Date: (YYYY-MM-DD or YYYY/MM/DD) <br>
+                       <input type="date" name="early_bird_end_date" class="w3-input" required><br><br>         
+                        Convenor Name:<br>
+                        <input name="convenor" value = "{{current_user.name}}"  class="w3-input" readonly ><br><br>
+                        {% if not is_course %}
+                            <input type="hidden" name="capacity" value="-1">
+                        {% else %}
+                            Capacity:<br>
+                            <input name="capacity"  class="w3-input" required><br><br>
+                        {% endif %}
+                        Description:<br>
+                        <textarea name="description"  class="w3-input" required></textarea><br>
+                        {% if not is_course %}
+                            <div id="room_fields"></div>
+                            <input type="button" class="btn btn-secondary" onclick="add_input_fields();" value="Add Session" /><br><br>
+                        {% endif %}
+                        <input type="hidden" name="handle_form" value="1">
+                        {% if not is_course %}
+                            <input type="hidden" name="is_course" value="0">
+                        {% else %}
+                            <input type="hidden" name="is_course" value="1">
+                        {% endif %}
+                        <button type="submit" value="Submit" class = "w3-button w3-black w3-round"><b>Create Event!</b></button>
+                    </form>
+           {% endif %}
+        </tr>
+    </table>
+{% endif %}
+{% endblock %}
+

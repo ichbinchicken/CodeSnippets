@@ -1,0 +1,46 @@
+{% macro register(cur_user, cur_seminar, cur_seminar_id, reg_state, act_state, act_event) %}
+{% if reg_state %}
+    <form method="post">
+        <input type="hidden" name="event" value="{{ cur_seminar_id }}">
+        {% set reg_value = 0 if reg_state else 1 %}
+        <input type="hidden" name="registered" value="{{ reg_value }}">
+        <button class="btn btn-danger">Deregister</button>
+        {% if act_state == 1 and cur_seminar_id == act_event %}
+            <span style="color:blue">Register success!</span>
+        {% elif act_state == 2 and cur_seminar_id == act_event %}
+            <span style="color:blue">Deregister success!</span>
+        {% elif act_state == 3 and cur_seminar_id == act_event %}
+            <span style="color:red">Deregister failed!</span>
+        {% elif act_state == 4 and cur_seminar_id == act_event %}
+            <span style="color:red">Register failed!</span>
+        {% endif %}
+    </form>
+{% else %}
+    <button class="btn btn-warning" onclick="show_session_options({{ cur_seminar_id }})">Select Sessions (min 1)</button>
+    <br>
+    <div id="show_session_options_{{ cur_seminar_id }}" style="display: none">
+        <br>
+        <form method="post" onsubmit="return validateSessionRegister({{ cur_seminar.registration_fee }}, 0, {{ cur_user.u_type }}, '{{ cur_seminar.early_bird_start_date }}', '{{ cur_seminar.early_bird_end_date }}', '{{ cur_user.name }}')">
+            {% for session in cur_seminar.sessions %}
+                <input type="checkbox" name="sessions to be selected" value="{{ session.get_id() }}"> {{ session.name }}
+                <input type="hidden" name="session speaker" id ="register_session_{{ session.get_id() }}_speaker" value="{{ session.speaker }}">
+                <br>
+            {% endfor %}
+            <br>
+            <input type="hidden" name="event" value="{{ cur_seminar_id }}">
+            {% set reg_value = 0 if reg_state else 1 %}
+            <input type="hidden" name="registered" value="{{ reg_value }}">
+            <button class="btn btn-success" type="submit">Register</button>
+        </form>
+    </div>
+    {% if act_state == 1 and cur_seminar_id == act_event %}
+        <span style="color:blue">Register success!</span>
+    {% elif act_state == 2 and cur_seminar_id == act_event %}
+        <span style="color:blue">Deregister success!</span>
+    {% elif act_state == 3 and cur_seminar_id == act_event %}
+        <span style="color:red">Deregister failed!</span>
+    {% elif act_state == 4 and cur_seminar_id == act_event %}
+        <span style="color:red">Register failed!</span>
+    {% endif %}
+{% endif %}
+{% endmacro %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+   <div class="login-form">
+   {% with passed = get_flashed_messages() %}
+        {% if passed %}
+            <h2 class="text-center">{{ passed[0] }}</h2>
+        {% endif %}
+    {% endwith %}
+       <form method="post">
+           <h2 class="text-center">Please Sign In</h2>
+           <br>
+           <div class="form-group">
+               <input type="text" class="form-control" name="username" required="required">
+           </div>
+           <div class="form-group">
+               <input type="password" class="form-control" name="password" required="required">
+           </div>
+           <div class="form-group">
+            <button class="btn btn-primary btn-block">Log in</button>
+           </div>
+       </form>
+       <a href="{{ url_for('index') }}"><h2 class="text-center">Go Back To Homepage</h2></a>
+    </div>
+{% endblock %}

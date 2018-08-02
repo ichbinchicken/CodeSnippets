@@ -1,0 +1,21 @@
+{% macro register(cur_user, cur_course, reg_state, act_state, act_event, cur_course_object) %}
+<form method="post">
+    <input type="hidden" name="event" value="{{ cur_course }}">
+    {% set reg_value = 0 if reg_state else 1 %}
+    <input type="hidden" name="registered" value="{{ reg_value }}">
+    {% if reg_state %}
+        <button class="btn btn-danger">Deregister</button>
+    {% else %}
+        <button type ="submit" class="btn btn-success" onclick="return validateSessionRegister({{ cur_course_object.registration_fee }}, 1, {{ cur_user.u_type }}, '{{ cur_course_object.early_bird_start_date }}', '{{ cur_course_object.early_bird_end_date }}', '{{ cur_user.name }}' )">Register</button>
+    {% endif %}
+    {% if act_state == 1 and cur_course == act_event %}
+        <span class="text-success">Register success!</span>
+    {% elif act_state == 2 and cur_course == act_event %}
+        <span class="text-success">Deregister success!</span>
+    {% elif act_state == 3 and cur_course == act_event %}
+        <span class="text-danger">Deregister failed!</span>
+    {% elif act_state == 4 and cur_course == act_event %}
+        <span class="text-danger">Register failed!</span>
+    {% endif %}
+</form>
+{% endmacro %}

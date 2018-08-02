@@ -1,0 +1,34 @@
+{% macro register(cur_user, cur_event, reg_state, act_state) %}
+<!--<form method="post">-->
+    {% if reg_state %}
+        {% set reg_value = 0 %}
+    {% else %}
+        {% set reg_value = 1 %}
+    {% endif %}
+    <input type="hidden" name="event" value="{{ cur_event }}">
+    <input type="hidden" name="registered" value="{{ reg_value }}">
+    {% if reg_state %}
+        <button class="button" formmethod="POST">Deregister</button>
+    {% else %}
+        {% if cur_user.name == cur_event.convenor %}
+        <button class="button.disabled" disabled>Register</button>
+        {% else %}
+        <button class="button" formmethod="POST">Register</button>
+        {% endif %}
+    {% endif %}
+<!--</form>-->
+{% endmacro %}
+
+{% macro register_return(action_occur, act_state) %}
+    {% if action_occur == 1 %}
+        {% if act_state == 1 %}
+            <span style="color:blue">Register success!</span>
+        {% elif act_state == 2 %}
+            <span style="color:blue">Deregister success!</span>
+        {% elif act_state == 3 %}
+            <span style="color:red">Deregister failed!</span>
+        {% elif act_state == 4%}
+            <span style="color:red">Register failed!</span>
+        {% endif %}
+    {% endif %}
+{% endmacro %}

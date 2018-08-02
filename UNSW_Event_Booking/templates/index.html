@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+<br>
+    <div class="homepage_header1">
+        <br>
+        <img src="{{ url_for('static', filename="UNSW_logo.png") }}" alt="UNSW logo">
+        <br><br>
+        <p>Welcome to UNSW Event Booking System!</p>
+        <p>Your Best Event Planner</p>
+        {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}"><i>Sign On Here</i></a>
+            <a href="{{ url_for('registerguest') }}"><i>Register a guest</i></a>
+        {% endif %}
+    </div>
+{% endblock %}

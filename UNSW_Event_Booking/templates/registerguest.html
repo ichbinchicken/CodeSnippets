@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand"><b>Guest Registration</b></a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{{ url_for('index') }}">Homepage</a>
+        </div>
+     </div>
+</nav>
+<form method="post" name="guest_form" onsubmit= "return validateGuestRegistration()">
+    <div class="form-group" style="margin: 30px">
+        {% if guest_check == 0 %}
+            <p style="color: red">Make sure you are not using a registered email!</p>
+        {% endif %}
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="guest_username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group" style="margin: 30px">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="guest_password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+    </div>
+    <button type="submit" value="Submit" class = "btn btn-primary" style="margin: 30px"><b>Register Guest</b></button>
+</form>
+{% endblock %}
